@@ -1,0 +1,2 @@
+# StyleGAN2_MNIST
+StyleGAN2 MNIST
