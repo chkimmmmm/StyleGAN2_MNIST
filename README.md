@@ -1,2 +1,11 @@
-# StyleGAN2_MNIST
-StyleGAN2 MNIST
+# StyleGAN2 for MNIST
+
+I release StyleGAN2 for MNIST.\
+The main code is based on [labmlai](https://github.com/labmlai/annotated_deep_learning_paper_implementations).
+\
+The weights and samples are available in [link](https://drive.google.com/drive/folders/1QK2cCDFKHjtL7C8WVHidXJHJnac_VZCT?usp=sharing).
+
+Sample image
+![alt text]()
+
+To train, run main.py. 
