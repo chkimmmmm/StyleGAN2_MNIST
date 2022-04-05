@@ -83,10 +83,12 @@ class Config:
         self.path_length_penalty = PathLengthPenalty(0.99).to(self.device)
 
         if self.continue_train:
-            g_weight = self.save_dir + '/GAN_GEN_150000.pth'
-            d_weight = self.save_dir + '/GAN_DIS_150000.pth'
+            g_weight = self.save_dir + '/GAN_GEN_300000.pth'
+            d_weight = self.save_dir + '/GAN_DIS_300000.pth'
+            map_weight = self.save_dir + '/GAN_MAP_300000.pth'
             self.generator.load_state_dict(torch.load(g_weight))
             self.discriminator.load_state_dict(torch.load(d_weight))
+            self.mapping_network.load_state_dict(torch.load(map_weight))
 
         # length penalty loss
 
@@ -209,15 +211,23 @@ class Config:
                 self.save_dir, "GAN_GEN_OPTIM_" + str(idx+1) + ".pth")
             dis_optim_save_file = os.path.join(
                 self.save_dir, "GAN_DIS_OPTIM_" + str(idx+1) + ".pth")
+            map_save_file = os.path.join(self.save_dir, "GAN_MAP_" + str(idx+1) + ".pth")
 
             torch.save(self.generator.state_dict(), gen_save_file)
             torch.save(self.discriminator.state_dict(), dis_save_file)
             torch.save(self.generator_optimizer.state_dict(), gen_optim_save_file)
             torch.save(self.discriminator_optimizer.state_dict(), dis_optim_save_file)
+            torch.save(self.mapping_network.state_dict(), map_save_file)
 
     def train(self):
         for i in range(self.training_steps):
             self.step(i)
+
+    def test(self):
+        generated_images, _ = self.generate_images(self.batch_size)
+        torchvision.utils.save_image(generated_images,  './sample.png',
+                                     nrow=8, normalize=True, scale_each=True)
+
 
 def cycle_dataloader(data_loader):
     """
@@ -233,6 +243,8 @@ def cycle_dataloader(data_loader):
 
 def main():
     config = Config()
+    #config.test()
+    #exit()
     config.train()
 
 
