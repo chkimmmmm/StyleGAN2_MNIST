@@ -30,7 +30,7 @@ class Generator(nn.Module):
         # Set number of features for each layer
         features = [min(max_features, n_features * 2 * (2 ** i)) for i in range(log_resolution - 2, -1, -1)]
         self.n_block = len(features)
-        self.initial_constant = nn.Parameter(torch.randn((1, features[0], 4, 4)))
+        self.initial_constant = nn.Parameter(torch.randn((1, features[0], 32, 32)))
         self.style_block = StyleBlock(d_latent, features[0], features[0])
         self.to_rgb = ToRGB(d_latent, features[0])
 
@@ -38,7 +38,8 @@ class Generator(nn.Module):
         blocks = [GeneratorBlock(d_latent, features[i - 1], features[i]) for i in range(1, self.n_block)]
         self.blocks = nn.ModuleList(blocks)
 
-        self.up_sample = UpSample()
+        #self.up_sample = UpSample()
+        self.up_sample = nn.Identity()
 
     def forward(self, w, input_noise):
         batch_size = w.shape[1]

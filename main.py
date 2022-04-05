@@ -32,7 +32,7 @@ class Config:
         self.dataset = 'MNIST'
         self.thread = 4
         self.device = torch.device("cuda:0")
-        self.dataset_path = './Data/MNIST/trainingSet/trainingSet'
+        self.dataset_path = './dataset/MNIST/trainingSet/trainingSet'
         self.image_size = 32
         self.batch_size = 32
         self.d_latent = 128
@@ -126,7 +126,7 @@ class Config:
 
     def get_noise(self, batch_size):
         noise = []
-        resolution = 4
+        resolution = 32
 
         for i in range(self.n_gen_blocks):
             if i == 0:
@@ -137,7 +137,7 @@ class Config:
 
             noise.append((n1,n2))
 
-            resolution *= 2
+            #resolution *= 2
         return noise
 
     def generate_images(self, batch_size):
