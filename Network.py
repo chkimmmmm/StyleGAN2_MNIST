@@ -5,7 +5,6 @@ import torch
 import torch.nn.functional as F
 import torch.utils.data
 from torch import nn
-from labml_nn.gan import stylegan
 
 
 class MappingNetwork(nn.Module):
