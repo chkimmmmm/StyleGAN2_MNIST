@@ -195,12 +195,13 @@ class Config:
         self.mapping_network_optimizer.step()
         print('Iteration: {}, Generator loss is:{}, Discriminator loss is: {}'.format(idx+1, gen_loss, disc_loss))
         if (idx+1) % 1000 == 0:
-            #img = generated_images[0].permute(1,2,0).cpu().detach().numpy()
-            #plt.imshow(img, cmap='gray')
-            #plt.savefig(self.train_sample_dir + '/graph_{}.png'.format(idx+1))
-            #torchvision.utils.make_grid(generated_images, nrow=8, normalize=True, scale_each=True)
-            torchvision.utils.save_image(generated_images, self.train_sample_dir + '/sample_{}.png'.format(str(idx+1)), nrow=8, normalize=True, scale_each = True)
-            #plt.show()
+            with torch.no_grad():
+                #img = generated_images[0].permute(1,2,0).cpu().detach().numpy()
+                #plt.imshow(img, cmap='gray')
+                #plt.savefig(self.train_sample_dir + '/graph_{}.png'.format(idx+1))
+                #torchvision.utils.make_grid(generated_images, nrow=8, normalize=True, scale_each=True)
+                torchvision.utils.save_image(generated_images, self.train_sample_dir + '/sample_{}.png'.format(str(idx+1)), nrow=8, normalize=True, scale_each = True)
+                #plt.show()
 
 
 
