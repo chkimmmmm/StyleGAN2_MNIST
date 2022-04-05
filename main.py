@@ -83,8 +83,8 @@ class Config:
         self.path_length_penalty = PathLengthPenalty(0.99).to(self.device)
 
         if self.continue_train:
-            g_weight = self.save_dir + '/GAN_DIS_OPTIM_15000.pth'
-            d_weight = self.save_dir + '/GAN_GEN_OPTIM_15000.pth'
+            g_weight = self.save_dir + '/GAN_GEN_15000.pth'
+            d_weight = self.save_dir + '/GAN_DIS_15000.pth'
             self.generator.load_state_dict(torch.load(g_weight))
             self.discriminator.load_state_dict(torch.load(d_weight))
 
