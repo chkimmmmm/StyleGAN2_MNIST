@@ -193,7 +193,10 @@ class Config:
         torch.nn.utils.clip_grad_norm_(self.mapping_network.parameters(), max_norm=1.0)
         self.generator_optimizer.step()
         self.mapping_network_optimizer.step()
-        print('Iteration: {}, Generator loss is:{}, Discriminator loss is: {}'.format(idx+1, gen_loss, disc_loss))
+
+        if (idx+1) % 1000 == 0:
+            print('Iteration: {}, Generator loss is:{}, Discriminator loss is: {}'.format(idx+1, gen_loss, disc_loss))
+
         if (idx+1) % 5000 == 0:
             with torch.no_grad():
                 #img = generated_images[0].permute(1,2,0).cpu().detach().numpy()
