@@ -4,6 +4,8 @@ I release StyleGAN2 for MNIST.\
 The main code is based on [labmlai](https://github.com/labmlai/annotated_deep_learning_paper_implementations).
 \
 The weights and samples are available in [link](https://drive.google.com/drive/folders/1JXx_5gMVNvZNFMdRA9Bbt92uzgH46SHx?usp=sharing).
+\
+The above link has weights of non-upsampling SG2-MNIST.
 
 Sample image
 ![alt text](https://github.com/chkimmmmm/StyleGAN2_MNIST/blob/main/sample/sample_150000.png)
