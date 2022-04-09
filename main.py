@@ -135,7 +135,7 @@ class Config:
                 n1 = torch.randn(batch_size,1,resolution, resolution, device=self.device)
             n2 = torch.randn(batch_size, 1, resolution, resolution, device=self.device)
 
-            noise.append((n1,n2))
+            noise.append([n1,n2])
 
             resolution *= 2
         return noise
@@ -143,6 +143,7 @@ class Config:
     def generate_images(self, batch_size):
         w = self.get_w(batch_size)
         noise = self.get_noise(batch_size)
+        #torch.save(noise, './noise.pth')
         image = self.generator(w,noise)
         return image, w
 
